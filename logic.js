@@ -15,17 +15,37 @@
     var database = firebase.database();
 
 // 2. button for adding employees
+$('#addTrain').on('click', function(event) {
+event.preventDefault(); 
 
     // Gets user data inputs
+    var trName = $('#trainName').val().trim();
+    var trDestination = $('#trainDestination').val().trim();
+    var trTime = $('#trainTime').val();
+    var trFrequency = $('trainFrequency').val();
 
     // creates local temporary object for storing user data
+    var newTrain = {
+        name: trName,
+        destination: trDestination,
+        time: trTime,
+        frequency: trFrequency,
+    }
 
     // Uploads temporary object to the database
+    database.ref().push(newTrain);
 
     // logs uploaded data to the console
+    console.log(newTrain);
+
+    alert("New Train added successfully!!");
 
     // clears form text boxes
-
+    $('#trainName').val("");
+    $('#trainDestination').val("");
+    $('#trainTime').val("");
+    $('trainFrequency').val("");
+});
 // 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
 
     // stores everything in a variable

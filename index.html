@@ -26,6 +26,9 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
 
+    <!-- Moment.js Reference -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
 
     <title>Train scheduler</title>
 </head>
@@ -48,6 +51,7 @@
     </div>
 
     <div class="container">
+
         <!-- current schedule -->
         <table class="table">
             <thead class="thead-dark">
@@ -78,28 +82,26 @@
             </tbody>
         </table>
 
-
         <!-- add train -->
         <form class="theForm">
             <div class="form-group">
                 <label for="formGroupExampleInput">Train Name</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                <input type="text" class="form-control" id="trainName" placeholder="">
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">Destination</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
+                <input type="text" class="form-control" id="trainDestination" placeholder="">
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">Train time (HH:mm - military time</label>
-                <input type="time" class="form-control" id="formGroupExampleInput2" placeholder="">
+                <input type="time" class="form-control" id="trainTime" placeholder="">
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">Frequency (min)</label>
-                <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="">
+                <input type="number" class="form-control" id="trainFrequency" placeholder="">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" id="addTrain" class="btn btn-primary">Submit</button>
         </form>
-
     </div>
 
     <!-- footer -->
