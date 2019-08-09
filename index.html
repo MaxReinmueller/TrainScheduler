@@ -36,13 +36,19 @@
     <!-- jumbotron -->
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">Anytime is train time</h1>
-            <p class="lead">All aboard!</p>
+            <img id="logo" src="assets/Coder-Station.png">
+            
+            
+            
+            </div>
         </div>
     </div>
 
     <div class="container">
-
+        <div class="row">
+            <h2 class="col-4" id="current"></h2>
+            <div class="col-4" id="clock"></div>
+        </div>
         <!-- current schedule -->
         <table class="table" id="trainTable">
             <thead class="thead-dark">
@@ -58,7 +64,7 @@
 
             </tbody>
         </table>
-
+<hr>
         <!-- add train -->
         <form class="theForm">
             <div class="form-group">
@@ -70,7 +76,7 @@
                 <input type="text" class="form-control" id="trainDestination" placeholder="">
             </div>
             <div class="form-group">
-                <label for="formGroupExampleInput2">Train time (HH:mm - military time</label>
+                <label for="formGroupExampleInput2">Train time (HH:mm - military time)</label>
                 <input type="time" class="form-control" id="trainTime" placeholder="">
             </div>
             <div class="form-group">

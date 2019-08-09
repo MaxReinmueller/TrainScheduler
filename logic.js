@@ -12,8 +12,19 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-    var database = firebase.database();
+ var database = firebase.database();
 
+//  displays current time
+$(document).ready(function(){ 
+var clock = $("#clock");
+
+setInterval(() =>{
+var now = moment().format("hh:mm:ss A");
+$("#clock").text(now);
+
+},1000);
+
+});
 // 2. button for adding employees
 $("#addTrain").on('click', function(event) {
 event.preventDefault(); 
@@ -21,7 +32,7 @@ event.preventDefault();
     // Gets user data inputs
     var trName = $('#trainName').val().trim();
     var trDestination = $('#trainDestination').val().trim();
-    var trTime = $('#trainTime').val();
+    var trTime = moment($("#trainTime").val().trim());
     var trFrequency = $('#trainFrequency').val();
 
     // console.log(trName);
@@ -54,37 +65,43 @@ event.preventDefault();
 });
 // 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
 database.ref().on("child_added", function(childSnapshot) {
-    console.log(childSnapshot.val());
+    // console.log(childSnapshot.val());
 
     // stores everything in a variable
     var nameOfTrain = childSnapshot.val().name;
     var destinationOfTrain = childSnapshot.val().destination;
-    var timeOfTrain = childSnapshot.val().time;
+    var firstTrainTime = childSnapshot.val().time;
     var frequencyOfTrain = childSnapshot.val().frequency;
+    
 
     // console logs info
     console.log(nameOfTrain);
     console.log(destinationOfTrain);
-    console.log(timeOfTrain);
+    console.log(firstTrainTime);
     console.log(frequencyOfTrain);
 
-    // makes time look nicer
+//  Next Train and Minuets Away using moment.js
+    // makes sure first train is after current time 
+  var trainTimeConv = moment(firstTrainTime, "hh:mm a").subtract(1, "years");
+  var currentToFirst = moment().diff(moment(trainTimeConv), "minutes");
+  
+  var timeLeft = currentToFirst % frequencyOfTrain;
+  var minutesAway = frequencyOfTrain - timeLeft;
+  var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm a");
 
-    // calculates next arrival
-    var arrival = (timeOfTrain.val() + frequencyOfTrain.val());
-    console.log(arrival);
-
-    // calculates minuets away
 
     // creates new row
     var newRow = $("<tr>").append(
         $("<td>").text(nameOfTrain),
         $("<td>").text(destinationOfTrain),
-        $("<td>").text(frequencyOfTrain)
+        $("<td>").text(frequencyOfTrain),
+        $("<td>").text(nextArrival),
+        $("<td>").text(minutesAway)
     );
     // append new row to the table
         $("#trainTable  > tbody").append(newRow)
 });
+
 
 
   
