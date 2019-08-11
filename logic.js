@@ -15,16 +15,8 @@
  var database = firebase.database();
 
 //  displays current time
-$(document).ready(function(){ 
-var clock = $("#clock");
+ 
 
-setInterval(() =>{
-var now = moment().format("hh:mm:ss A");
-$("#clock").text(now);
-
-},1000);
-
-});
 // 2. button for adding employees
 $("#addTrain").on('click', function(event) {
 event.preventDefault(); 
@@ -32,7 +24,7 @@ event.preventDefault();
     // Gets user data inputs
     var trName = $('#trainName').val().trim();
     var trDestination = $('#trainDestination').val().trim();
-    var trTime = moment($("#trainTime").val().trim());
+    var trTime = $("#trainTime").val().trim();
     var trFrequency = $('#trainFrequency').val();
 
     // console.log(trName);
@@ -66,7 +58,7 @@ event.preventDefault();
 // 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
 database.ref().on("child_added", function(childSnapshot) {
     // console.log(childSnapshot.val());
-
+    
     // stores everything in a variable
     var nameOfTrain = childSnapshot.val().name;
     var destinationOfTrain = childSnapshot.val().destination;
@@ -89,6 +81,9 @@ database.ref().on("child_added", function(childSnapshot) {
   var minutesAway = frequencyOfTrain - timeLeft;
   var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm a");
 
+  // console.log(minutesAway);
+
+
 
     // creates new row
     var newRow = $("<tr>").append(
@@ -99,26 +94,5 @@ database.ref().on("child_added", function(childSnapshot) {
         $("<td>").text(minutesAway)
     );
     // append new row to the table
-        $("#trainTable  > tbody").append(newRow)
+        $("#trainTable  > tbody").append(newRow);
 });
-
-
-
-  
-    // Prettify the employee start
-    // var empStartPretty = moment.unix(empStart).format("MM/DD/YYYY");
-  
-    // Calculate the months worked using hardcore math
-    // To calculate the months worked
-    // var empMonths = moment().diff(moment(empStart, "X"), "months");
-    // console.log(empMonths);
-  
-    // Calculate the total billed rate
-    // var empBilled = empMonths * empRate;
-    // console.log(empBilled);
-  
-
-  
-
-
-
