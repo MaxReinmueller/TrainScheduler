@@ -1,16 +1,20 @@
-# TrainScheduler
+# Train Scheduler
+This is a train schedule application that displays arrival times, departure times, and how many minutes remain until they arrive at their station. Users are able to add new trains to the schedule
 
-<tr>
-                    <td scope="row">Thomas</td>
-                    <td>Ottoman empire</td>
-                    <td>23</td>
-                    <td>05:35PM</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td scope="row">Thomas</td>
-                    <td>Ottoman empire</td>
-                    <td>23</td>
-                    <td>05:35PM</td>
-                    <td>10</td>
-                </tr>
+## Getting Started
+To add a train users will submit the following:
+* Train Name
+* Destination
+* First Train Time (in military time)
+* Frequency (in minutes)
+
+### Technology Used
+HTML
+CSS 
+JavaScript 
+jQuery
+Firebase
+Momentjs
+
+### Link to Site
+https://maxreinmueller.github.io/TrainScheduler/
